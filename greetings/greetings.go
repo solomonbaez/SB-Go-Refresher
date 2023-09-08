@@ -16,6 +16,25 @@ func Hello(name string) (string, error) {
 	return message, nil
 }
 
+// messages type -> map with string keys, string values
+func Hellos(names []string) (map[string]string, error) {
+	messages := make(map[string]string)
+
+	for _, name := range names {
+		var message string
+		var err error
+
+		message, err = Hello(name)
+		if err != nil {
+			return nil, err
+		}
+
+		messages[name] = message
+	}
+
+	return messages, nil
+}
+
 func randomFormat() string {
 	formats := []string{
 		"Hi, %v welcome!",
